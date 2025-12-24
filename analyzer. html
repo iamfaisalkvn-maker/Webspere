@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +9,14 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f7fa;
+      background: #f4f6f9;
       padding: 30px;
     }
     h1 {
       color: #0a3cff;
     }
     input, button {
-      padding: 10px;
+      padding: 12px;
       width: 100%;
       margin-top: 10px;
       font-size: 16px;
@@ -26,63 +27,119 @@
       border: none;
       cursor: pointer;
     }
-    .result {
+    .card {
       background: white;
       padding: 20px;
       margin-top: 20px;
       border-radius: 6px;
     }
+    .good { color: green; }
+    .warn { color: orange; }
+    .bad { color: red; }
   </style>
 </head>
 
 <body>
 
 <h1>SEO Analyzer</h1>
-<p>Enter a website URL to analyze basic on-page SEO.</p>
+<p>Analyze basic on-page SEO of any website.</p>
 
 <input type="text" id="url" placeholder="https://example.com">
 <button onclick="analyze()">Analyze</button>
 
-<div class="result" id="result"></div>
+<div class="card" id="result"></div>
 
 <script>
 async function analyze() {
   const url = document.getElementById("url").value;
-  const resultDiv = document.getElementById("result");
+  const result = document.getElementById("result");
 
   if (!url) {
-    resultDiv.innerHTML = "❌ Please enter a URL.";
+    result.innerHTML = "<p class='bad'>❌ Please enter a valid URL.</p>";
     return;
   }
 
-  resultDiv.innerHTML = "⏳ Analyzing...";
+  result.innerHTML = "⏳ Analyzing website...";
 
   try {
     const api = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
     const response = await fetch(api);
     const html = await response.text();
 
-    const titleMatch = html.match(/<title>(.*?)<\/title>/i);
-    const metaMatch = html.match(/<meta name="description" content="(.*?)"/i);
-    const h1Match = html.match(/<h1[^>]*>(.*?)<\/h1>/i);
+    const title = html.match(/<title>(.*?)<\/title>/i);
+    const meta = html.match(/<meta name="description" content="(.*?)"/i);
+    const h1s = [...html.matchAll(/<h1[^>]*>(.*?)<\/h1>/gi)];
+    const text = html.replace(/<[^>]*>/g, " ");
+    const wordCount = text.trim().split(/\s+/).length;
 
     let score = 0;
+    let tips = [];
 
-    if (titleMatch) score += 25;
-    if (metaMatch) score += 25;
-    if (h1Match) score += 25;
-    if (html.length > 3000) score += 25;
+    // TITLE
+    if (title) {
+      const len = title[1].length;
+      if (len >= 50 && len <= 60) {
+        score += 20;
+      } else {
+        score += 10;
+        tips.push("⚠️ Title length should be 50–60 characters.");
+      }
+    } else {
+      tips.push("❌ Missing title tag.");
+    }
 
-    resultDiv.innerHTML = `
-      <h3>SEO Analysis Result</h3>
-      <p><strong>Title:</strong> ${titleMatch ? titleMatch[1] : "❌ Missing"}</p>
-      <p><strong>Meta Description:</strong> ${metaMatch ? metaMatch[1] : "❌ Missing"}</p>
-      <p><strong>H1 Tag:</strong> ${h1Match ? h1Match[1] : "❌ Missing"}</p>
-      <p><strong>SEO Score:</strong> ${score} / 100</p>
+    // META DESCRIPTION
+    if (meta) {
+      const len = meta[1].length;
+      if (len >= 150 && len <= 160) {
+        score += 20;
+      } else {
+        score += 10;
+        tips.push("⚠️ Meta description should be 150–160 characters.");
+      }
+    } else {
+      tips.push("❌ Missing meta description.");
+    }
+
+    // H1
+    if (h1s.length === 1) {
+      score += 20;
+    } else if (h1s.length === 0) {
+      tips.push("❌ No H1 tag found.");
+    } else {
+      tips.push("⚠️ Multiple H1 tags found. Use only one.");
+      score += 10;
+    }
+
+    // WORD COUNT
+    if (wordCount >= 500) {
+      score += 20;
+    } else {
+      tips.push("⚠️ Content is too short. Aim for 500+ words.");
+      score += 10;
+    }
+
+    // BASE STRUCTURE
+    if (html.length > 3000) score += 20;
+
+    result.innerHTML = `
+      <h3>SEO Audit Result</h3>
+
+      <p><strong>Title:</strong> ${title ? title[1] : "<span class='bad'>Missing</span>"}</p>
+      <p><strong>Meta Description:</strong> ${meta ? meta[1] : "<span class='bad'>Missing</span>"}</p>
+      <p><strong>H1 Count:</strong> ${h1s.length}</p>
+      <p><strong>Word Count:</strong> ${wordCount}</p>
+
+      <h3>SEO Score: ${score} / 100</h3>
+
+      <h4>Recommendations</h4>
+      <ul>
+        ${tips.length ? tips.map(t => `<li>${t}</li>`).join("") : "<li class='good'>✅ No major issues found</li>"}
+      </ul>
     `;
 
-  } catch (error) {
-    resultDiv.innerHTML = "❌ Unable to analyze this website.";
+  } catch (err) {
+    result.innerHTML = "<p class='bad'>❌ Unable to analyze this website.</p>";
   }
 }
 </script>
