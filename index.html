@@ -1,88 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Webspere – SEO Tools & Website Growth Platform</title>
-
-  <!-- SEO META -->
-  <meta name="description" content="Webspere is a modern SEO platform offering SEO analyzer tools, website audits, content promotion, and LinkedIn paid content promotion.">
-  <meta name="keywords" content="SEO tools, SEO analyzer, website audit, content promotion, LinkedIn paid promotion">
-  <meta name="author" content="Webspere">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Webspere – Professional SEO Audit</title>
 
   <style>
     body {
+      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
-      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: #111;
+      background: #f4f6fb;
+      color: #222;
     }
-
     header {
-      text-align: center;
-      padding: 90px 20px;
+      background: #4f46e5;
       color: #fff;
+      padding: 40px 20px;
+      text-align: center;
     }
-
-    header h1 {
-      font-size: 52px;
-      margin-bottom: 10px;
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
     }
-
-    header p {
-      font-size: 20px;
-      opacity: 0.95;
-    }
-
-    .cta {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 15px 30px;
-      background: #ffffff;
-      color: #4f46e5;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 30px;
-      text-decoration: none;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: -70px auto 0;
-      padding: 20px;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 40px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    .box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
       margin-bottom: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
-
     h2 {
-      color: #4f46e5;
       margin-top: 0;
     }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    ul {
+      padding-left: 20px;
     }
-
-    .box {
-      background: #f8fafc;
-      border-radius: 12px;
-      padding: 25px;
+    .price {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 15px 0;
+      color: #4f46e5;
     }
-
+    button {
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      padding: 14px 26px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #4338ca;
+    }
     footer {
+      background: #111;
+      color: #ccc;
       text-align: center;
-      padding: 35px 20px;
-      color: #e0e7ff;
+      padding: 20px;
       font-size: 14px;
+    }
+    .note {
+      font-size: 13px;
+      color: #666;
     }
   </style>
 </head>
@@ -91,70 +72,109 @@
 
 <header>
   <h1>Webspere</h1>
-  <p>Modern SEO Tools & Website Growth Platform</p>
-
-  <a href="analyzer.html" class="cta">
-    🔍 Run Free SEO Analyzer
-  </a>
-
-  <p style="margin-top:15px; opacity:0.9;">
-    Free audit • Paid detailed SEO report available
-  </p>
+  <p>Manual Professional SEO & Website Audit</p>
 </header>
 
-<div class="container">
+<section>
 
-  <div class="card">
-    <h2>About Webspere</h2>
+  <!-- SERVICE DESCRIPTION -->
+  <div class="box">
+    <h2>Professional SEO Audit (Manual Review)</h2>
+
     <p>
-      Webspere is a modern SEO platform helping businesses grow their
-      online presence through SEO tools, professional audits,
-      content promotion, and LinkedIn paid content promotion.
+      A human-reviewed SEO and website performance audit designed to identify
+      key issues affecting visibility, usability, and overall website health.
+    </p>
+
+    <ul>
+      <li>Manual website review (not automated resale)</li>
+      <li>SEO fundamentals & performance check</li>
+      <li>Mobile usability review</li>
+      <li>Clear issue list</li>
+      <li>Basic recommendations</li>
+      <li>PDF report delivered within 24–48 hours</li>
+    </ul>
+
+    <p class="note">
+      This service provides analysis and recommendations only.
+      Implementation and fixing are not included.
     </p>
   </div>
 
-  <div class="card">
-    <h2>Our Services</h2>
-    <div class="grid">
-      <div class="box">🔍 SEO Analyzer Tool</div>
-      <div class="box">📄 Website SEO Audits</div>
-      <div class="box">🔗 Backlink & Content Promotion</div>
-      <div class="box">💼 LinkedIn Paid Content Promotion</div>
-      <div class="box">📈 Long-term Organic Growth Strategy</div>
+  <!-- PRICING -->
+  <div class="box">
+    <h2>Pricing</h2>
+
+    <div id="price" class="price">
+      Loading price…
     </div>
+
+    <p class="note">
+      Pricing is adjusted based on your region.
+    </p>
+
+    <button onclick="requestAudit()">Request Paid SEO Audit</button>
+
+    <p class="note" style="margin-top:15px;">
+      India: Razorpay (UPI / Cards)<br/>
+      International: AirTM (Manual payment)
+    </p>
   </div>
 
-  <div class="card">
-    <h2>Why Choose Webspere</h2>
-    <div class="grid">
-      <div class="box">✅ 100% Organic & Ethical SEO</div>
-      <div class="box">🚀 Actionable, Business-Focused Insights</div>
-      <div class="box">📊 Tools + Human Expertise</div>
-      <div class="box">🔒 Transparent & Reliable</div>
-    </div>
-  </div>
-
-  <div class="card">
+  <!-- CONTACT -->
+  <div class="box">
     <h2>Contact</h2>
     <p>
-      📧 Email:
-      <a href="mailto:webspereglobal@gmail.com">
-        webspereglobal@gmail.com
-      </a>
-    </p>
-    <p>
-      📞 Phone:
-      <a href="tel:9544842260">
-        +91 95448 42260
-      </a>
+      Email: <strong>webspereglobal@gmail.com</strong><br/>
+      Phone / WhatsApp: <strong>+91 95448 42260</strong>
     </p>
   </div>
 
-</div>
+</section>
 
 <footer>
-  © 2025 <strong>Webspere</strong> • SEO Tools & Growth Platform
+  © 2025 Webspere. Manual SEO Audit Service.
 </footer>
+
+<script>
+  let country = "US";
+
+  fetch("https://ipapi.co/json/")
+    .then(res => res.json())
+    .then(data => {
+      country = data.country_code;
+
+      let priceText = "$29 – Professional SEO Audit";
+
+      if (country === "IN") {
+        priceText = "₹999 – Professional SEO Audit";
+      } else if (country === "GB") {
+        priceText = "£25 – Professional SEO Audit";
+      } else if (
+        ["DE","FR","ES","IT","NL","BE","SE","FI","NO","DK","IE","AT","PT","PL"].includes(country)
+      ) {
+        priceText = "€29 – Professional SEO Audit";
+      }
+
+      document.getElementById("price").innerText = priceText;
+    })
+    .catch(() => {
+      document.getElementById("price").innerText =
+        "$29 – Professional SEO Audit";
+    });
+
+  function requestAudit() {
+    if (country === "IN") {
+      alert(
+        "For India:\n\nPayment via Razorpay.\nPlease contact us at webspereglobal@gmail.com or WhatsApp 9544842260"
+      );
+    } else {
+      alert(
+        "For international clients:\n\nPayment via AirTM (manual).\nPlease email webspereglobal@gmail.com to proceed."
+      );
+    }
+  }
+</script>
 
 </body>
 </html>
