@@ -4,57 +4,46 @@
   <meta charset="UTF-8" />
   <title>Webspere SEO Analyzer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Professional SEO & Performance Analyzer by Webspere" />
+  <meta name="description" content="Professional SEO & Website Performance Audit Tool" />
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
+    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
     body {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
+      margin: 0;
       min-height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
     }
-
     .container {
-      background: #ffffff;
-      color: #333;
-      max-width: 800px;
+      background: #fff;
       width: 100%;
-      border-radius: 16px;
+      max-width: 850px;
       padding: 30px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.3);
     }
-
     h1 {
       text-align: center;
       color: #0f2027;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
-
     .subtitle {
       text-align: center;
       font-size: 14px;
       color: #555;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
-
     .input-group {
       display: flex;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
-
     input {
       flex: 1;
       padding: 14px;
@@ -62,155 +51,161 @@
       border: 1px solid #ccc;
       font-size: 15px;
     }
-
     button {
-      background: linear-gradient(135deg, #0072ff, #00c6ff);
-      border: none;
-      color: #fff;
-      padding: 14px 24px;
+      padding: 14px 20px;
       border-radius: 8px;
-      font-size: 15px;
+      border: none;
+      font-weight: 600;
       cursor: pointer;
-      transition: 0.3s;
     }
-
-    button:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
+    .free-btn {
+      background: linear-gradient(135deg,#0072ff,#00c6ff);
+      color: #fff;
     }
-
+    .paid-btn {
+      background: linear-gradient(135deg,#22c55e,#16a34a);
+      color: #fff;
+    }
     .loading {
-      text-align: center;
       display: none;
+      text-align: center;
       margin: 20px 0;
       font-weight: 600;
       color: #0072ff;
     }
-
     .results {
       display: none;
-      margin-top: 30px;
+      margin-top: 25px;
     }
-
-    .score-grid {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
       gap: 15px;
     }
-
     .card {
       padding: 20px;
       border-radius: 12px;
-      text-align: center;
       color: #fff;
+      text-align: center;
       font-weight: 600;
-      font-size: 16px;
     }
-
-    .performance { background: linear-gradient(135deg, #ff9800, #ff5722); }
-    .seo { background: linear-gradient(135deg, #4caf50, #2e7d32); }
-    .accessibility { background: linear-gradient(135deg, #9c27b0, #6a1b9a); }
-    .best { background: linear-gradient(135deg, #2196f3, #0d47a1); }
-
+    .performance { background: linear-gradient(135deg,#ff9800,#ff5722); }
+    .seo { background: linear-gradient(135deg,#4caf50,#2e7d32); }
+    .accessibility { background: linear-gradient(135deg,#9c27b0,#6a1b9a); }
+    .best { background: linear-gradient(135deg,#2196f3,#0d47a1); }
     .score {
       font-size: 34px;
       margin-top: 10px;
     }
-
     .footer {
-      margin-top: 30px;
+      margin-top: 25px;
       text-align: center;
       font-size: 13px;
-      color: #666;
+      color: #555;
     }
-
-    .footer strong {
-      color: #0f2027;
-    }
-
-    @media (max-width: 500px) {
-      .input-group {
-        flex-direction: column;
-      }
+    @media(max-width:600px){
+      .input-group { flex-direction: column; }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>Webspere SEO Analyzer</h1>
-    <p class="subtitle">Professional Website Performance & SEO Audit Tool</p>
+<div class="container">
+  <h1>Webspere SEO Analyzer</h1>
+  <p class="subtitle">Professional Website SEO & Performance Audit</p>
 
-    <div class="input-group">
-      <input id="urlInput" type="text" placeholder="https://example.com" />
-      <button onclick="analyzeSite()">Analyze</button>
-    </div>
+  <div class="input-group">
+    <input id="urlInput" placeholder="https://example.com" />
+    <button class="free-btn" onclick="runFreeAudit()">Free Audit</button>
+    <button class="paid-btn" onclick="payForAudit()">₹199 Full Audit</button>
+  </div>
 
-    <div class="loading" id="loading">Analyzing website… Please wait ⏳</div>
+  <div class="loading" id="loading">Analyzing website… please wait ⏳</div>
 
-    <div class="results" id="results">
-      <div class="score-grid">
-        <div class="card performance">
-          Performance
-          <div class="score" id="performanceScore">--</div>
-        </div>
-
-        <div class="card seo">
-          SEO
-          <div class="score" id="seoScore">--</div>
-        </div>
-
-        <div class="card accessibility">
-          Accessibility
-          <div class="score" id="accessibilityScore">--</div>
-        </div>
-
-        <div class="card best">
-          Best Practices
-          <div class="score" id="bestScore">--</div>
-        </div>
+  <div class="results" id="results">
+    <div class="grid">
+      <div class="card performance">
+        Performance
+        <div class="score" id="performance">--</div>
       </div>
-    </div>
-
-    <div class="footer">
-      Powered by <strong>Webspere</strong> | SEO Audits • Performance • Growth<br>
-      Contact: webspereglobal@gmail.com | 📞 9544842260
+      <div class="card seo">
+        SEO
+        <div class="score" id="seo">🔒</div>
+      </div>
+      <div class="card accessibility">
+        Accessibility
+        <div class="score" id="accessibility">🔒</div>
+      </div>
+      <div class="card best">
+        Best Practices
+        <div class="score" id="best">🔒</div>
+      </div>
     </div>
   </div>
 
-  <script>
-    const API_URL = "https://webspere-backend-1.onrender.com/analyze?url=";
+  <div class="footer">
+    Powered by <strong>Webspere</strong><br>
+    webspereglobal@gmail.com | 📞 9544842260
+  </div>
+</div>
 
-    function analyzeSite() {
-      const url = document.getElementById("urlInput").value.trim();
-      if (!url) {
-        alert("Please enter a valid website URL");
-        return;
-      }
+<script>
+const API = "https://webspere-backend-1.onrender.com/analyze?url=";
 
-      document.getElementById("loading").style.display = "block";
-      document.getElementById("results").style.display = "none";
+function runFreeAudit() {
+  const url = document.getElementById("urlInput").value.trim();
+  if (!url) return alert("Enter website URL");
 
-      fetch(API_URL + encodeURIComponent(url))
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById("loading").style.display = "none";
+  document.getElementById("loading").style.display = "block";
+  document.getElementById("results").style.display = "none";
 
-          document.getElementById("performanceScore").innerText = data.performance ?? "N/A";
-          document.getElementById("seoScore").innerText = data.seo ?? "N/A";
-          document.getElementById("accessibilityScore").innerText = data.accessibility ?? "N/A";
-          document.getElementById("bestScore").innerText = data.best_practices ?? "N/A";
+  fetch(API + encodeURIComponent(url))
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("performance").innerText = data.performance;
+      document.getElementById("seo").innerText = "🔒";
+      document.getElementById("accessibility").innerText = "🔒";
+      document.getElementById("best").innerText = "🔒";
+      document.getElementById("results").style.display = "block";
+    });
+}
 
-          document.getElementById("results").style.display = "block";
-        })
-        .catch(err => {
-          document.getElementById("loading").style.display = "none";
-          alert("Error analyzing website. Please try again.");
-          console.error(err);
-        });
-    }
-  </script>
+function payForAudit() {
+  const url = document.getElementById("urlInput").value.trim();
+  if (!url) return alert("Enter website URL first");
+
+  var options = {
+    key: "RAZORPAY_KEY_ID_HERE",   // 🔴 REPLACE THIS
+    amount: 19900,
+    currency: "INR",
+    name: "Webspere SEO Audit",
+    description: "Full Website Audit",
+    handler: function () {
+      runPaidAudit(url);
+    },
+    theme: { color: "#16a34a" }
+  };
+  new Razorpay(options).open();
+}
+
+function runPaidAudit(url) {
+  document.getElementById("loading").style.display = "block";
+  document.getElementById("results").style.display = "none";
+
+  fetch(API + encodeURIComponent(url))
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("performance").innerText = data.performance;
+      document.getElementById("seo").innerText = data.seo;
+      document.getElementById("accessibility").innerText = data.accessibility;
+      document.getElementById("best").innerText = data.best_practices;
+      document.getElementById("results").style.display = "block";
+    });
+}
+</script>
 
 </body>
 </html>
