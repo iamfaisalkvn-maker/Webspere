@@ -1,64 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Webspere – Professional SEO Audit</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-<header class="topbar">
-  <h1>Webspere</h1>
-  <a href="contact.html" class="btn">Request Audit</a>
-</header>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f5f7fb;
+  color: #1f2937;
+  line-height: 1.6;
+}
 
-<section class="hero">
-  <div class="hero-text">
-    <h2>Professional SEO Audit<br><span>Manual Review</span></h2>
-    <p>
-      A human-reviewed SEO audit to identify real issues affecting
-      visibility, performance, and usability.
-    </p>
+/* ===== Header ===== */
+header {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    <ul>
-      <li>✔ Manual SEO & website review</li>
-      <li>✔ On-page & basic technical checks</li>
-      <li>✔ Mobile & usability review</li>
-      <li>✔ Clear PDF report (24–48 hours)</li>
-    </ul>
+header h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
 
-    <a href="contact.html" class="btn primary">Request Paid SEO Audit</a>
-    <p class="note">Analysis & recommendations only. Fixing not included.</p>
-  </div>
+header a {
+  background: #fff;
+  color: #4f46e5;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
 
-  <div class="hero-image">
-    <img src="seo-illustration.png" alt="SEO Audit Illustration">
-  </div>
-</section>
+/* ===== Hero ===== */
+.hero {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
 
-<section class="pricing">
-  <h3>Pricing</h3>
-  <p class="price">₹1,000 – Professional SEO Audit</p>
-  <p class="note">
-    India: Razorpay (UPI / Cards)<br>
-    International: $29 (manual invoice)
-  </p>
-</section>
+.hero h2 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
 
-<section class="contact-info">
-  <h3>Contact</h3>
-  <p>Email: webspereglobal@gmail.com</p>
-  <p>WhatsApp: +91 95448 42260</p>
+.hero span {
+  color: #4f46e5;
+}
 
-  <a class="whatsapp"
-     href="https://wa.me/919544842260?text=Hello%20I%20need%20an%20SEO%20audit"
-     target="_blank">Chat on WhatsApp</a>
-</section>
+.hero p {
+  margin-bottom: 14px;
+  color: #4b5563;
+}
 
-<footer>
-  © 2025 Webspere. Manual SEO Audit Service.
-</footer>
+.hero ul {
+  list-style: none;
+  margin: 15px 0;
+}
 
-</body>
-</html>
+.hero ul li {
+  margin-bottom: 8px;
+}
+
+.hero ul li::before {
+  content: "✔";
+  color: #10b981;
+  margin-right: 8px;
+}
+
+.btn-primary {
+  display: inline-block;
+  margin-top: 12px;
+  background: #4f46e5;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.note {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+/* ===== Hero Image ===== */
+.hero-image img {
+  width: 100%;
+  max-width: 450px;
+  display: block;
+  margin: auto;
+}
+
+/* ===== Pricing ===== */
+.pricing {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 14px;
+}
+
+.pricing h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 26px;
+  font-weight: 700;
+  color: #4f46e5;
+}
+
+.pricing p {
+  margin-top: 6px;
+  color: #4b5563;
+}
+
+/* ===== Contact ===== */
+.contact-info {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 14px;
+}
+
+.contact-info h3 {
+  margin-bottom: 10px;
+}
+
+.contact-info a {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.whatsapp {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
