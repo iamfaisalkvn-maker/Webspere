@@ -4,111 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Thank You – Webspere</title>
-
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6fb;
-      margin: 0;
-      color: #222;
-    }
-    header {
-      background: #4f46e5;
-      color: #fff;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    section {
-      max-width: 700px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-    .box {
-      background: #fff;
-      padding: 35px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-    h2 {
-      margin-top: 0;
-      color: #4f46e5;
-    }
-    p {
-      font-size: 16px;
-      line-height: 1.6;
-    }
-    .highlight {
-      background: #eef2ff;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 20px 0;
-      font-size: 15px;
-    }
-    button {
-      background: #4f46e5;
-      color: #fff;
-      border: none;
-      padding: 12px 22px;
-      font-size: 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background: #4338ca;
-    }
-    footer {
-      background: #111;
-      color: #ccc;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      margin-top: 40px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-  <h1>Webspere</h1>
+<header class="topbar">
+  <div class="container nav">
+    <h1 class="logo">Webspere</h1>
+  </div>
 </header>
 
-<section>
-  <div class="box">
+<section class="deliverables">
+  <div class="container">
+    <div class="price-box" style="text-align:center;">
+      <h3>Thank You!</h3>
+      <p style="margin-top:15px;">
+        Your SEO audit request has been received successfully.
+      </p>
+      <p style="color:#555;">
+        You will hear back within <strong>24 hours</strong>.
+      </p>
 
-    <h2>Thank You for Your Request!</h2>
-
-    <p>
-      We have received your SEO audit request successfully.
-    </p>
-
-    <div class="highlight">
-      <strong>Next Steps:</strong><br/><br/>
-      📌 Our team will review your request<br/>
-      📌 We will contact you with payment instructions<br/>
-      📌 Audit report will be delivered within <strong>24–48 hours</strong> after payment
+      <a href="index.html" class="cta" style="margin-top:25px;display:inline-block;">
+        Back to Home
+      </a>
     </div>
-
-    <p>
-      If you have any questions, feel free to contact us:
-    </p>
-
-    <p>
-      📧 <strong>webspereglobal@gmail.com</strong><br/>
-      📱 <strong>+91 95448 42260</strong>
-    </p>
-
-    <button onclick="window.location.href='index.html'">
-      Back to Home
-    </button>
-
   </div>
 </section>
 
-<footer>
-  © 2025 Webspere. Manual SEO Audit Service.
+<footer class="footer">
+  <p>© 2025 Webspere. Manual SEO Audit Service.</p>
 </footer>
 
 </body>
