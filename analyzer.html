@@ -8,70 +8,81 @@
   <style>
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: #f4f6fb;
-      color: #222;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
     }
 
-    .container {
+    .wrapper {
       max-width: 900px;
-      margin: 40px auto;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .card {
       background: #ffffff;
+      border-radius: 14px;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
 
     h1 {
-      color: #0a3cff;
-      margin-bottom: 5px;
+      margin-top: 0;
+      color: #4f46e5;
     }
 
     .subtitle {
-      color: #666;
-      margin-bottom: 30px;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    .input-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
     }
 
     input {
-      width: 100%;
+      flex: 1;
       padding: 14px;
       font-size: 16px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      outline: none;
     }
 
     button {
-      margin-top: 15px;
-      padding: 14px;
-      width: 100%;
+      padding: 14px 22px;
       font-size: 16px;
-      background: #0a3cff;
-      color: white;
+      border-radius: 8px;
       border: none;
-      border-radius: 6px;
       cursor: pointer;
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: white;
+      font-weight: bold;
     }
 
     button:hover {
-      background: #082dbd;
+      opacity: 0.9;
     }
 
     .result {
-      margin-top: 30px;
-      padding: 20px;
-      background: #f9fafc;
-      border-radius: 8px;
+      margin-top: 25px;
+      padding: 25px;
+      border-radius: 12px;
+      background: #f8fafc;
     }
 
-    .score-box {
-      font-size: 28px;
+    .score {
+      font-size: 34px;
       font-weight: bold;
       margin: 15px 0;
     }
 
-    .good { color: #1a7f37; }
-    .warn { color: #b45309; }
-    .bad  { color: #b91c1c; }
+    .good { color: #16a34a; }
+    .warn { color: #d97706; }
+    .bad  { color: #dc2626; }
 
     ul {
       padding-left: 20px;
@@ -79,113 +90,23 @@
 
     footer {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 30px;
+      color: #e0e7ff;
       font-size: 14px;
-      color: #777;
+    }
+
+    footer span {
+      font-weight: bold;
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrapper">
+  <div class="card">
 
-  <h1>SEO Analyzer</h1>
-  <p class="subtitle">
-    Run a quick on-page SEO audit and get actionable insights.
-  </p>
-
-  <input type="text" id="url" placeholder="Enter website URL (https://example.com)">
-  <button onclick="analyze()">Run Free Audit</button>
-
-  <div class="result" id="result"></div>
-
-</div>
-
-<footer>
-  Powered by <strong>Webspere</strong> • Ethical SEO Tools
-</footer>
-
-<script>
-async function analyze() {
-  const url = document.getElementById("url").value;
-  const result = document.getElementById("result");
-
-  if (!url) {
-    result.innerHTML = "<p class='bad'>❌ Please enter a valid URL.</p>";
-    return;
-  }
-
-  result.innerHTML = "⏳ Analyzing website…";
-
-  try {
-    const api = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-    const response = await fetch(api);
-    const html = await response.text();
-
-    const title = html.match(/<title>(.*?)<\/title>/i);
-    const meta = html.match(/<meta name="description" content="(.*?)"/i);
-    const h1s = [...html.matchAll(/<h1[^>]*>(.*?)<\/h1>/gi)];
-    const text = html.replace(/<[^>]*>/g, " ");
-    const wordCount = text.trim().split(/\s+/).length;
-
-    let score = 0;
-    let tips = [];
-
-    if (title) {
-      score += (title[1].length >= 50 && title[1].length <= 60) ? 20 : 10;
-      if (title[1].length < 50 || title[1].length > 60)
-        tips.push("⚠️ Title length should be 50–60 characters.");
-    } else {
-      tips.push("❌ Missing title tag.");
-    }
-
-    if (meta) {
-      score += (meta[1].length >= 150 && meta[1].length <= 160) ? 20 : 10;
-      if (meta[1].length < 150 || meta[1].length > 160)
-        tips.push("⚠️ Meta description should be 150–160 characters.");
-    } else {
-      tips.push("❌ Missing meta description.");
-    }
-
-    if (h1s.length === 1) {
-      score += 20;
-    } else if (h1s.length === 0) {
-      tips.push("❌ No H1 tag found.");
-    } else {
-      tips.push("⚠️ Multiple H1 tags detected.");
-      score += 10;
-    }
-
-    score += wordCount >= 500 ? 20 : 10;
-    if (wordCount < 500)
-      tips.push("⚠️ Content is short. Aim for 500+ words.");
-
-    if (html.length > 3000) score += 20;
-
-    const scoreClass = score >= 80 ? "good" : score >= 50 ? "warn" : "bad";
-
-    result.innerHTML = `
-      <h3>Audit Summary</h3>
-      <p><strong>Page Title:</strong> ${title ? title[1] : "Missing"}</p>
-      <p><strong>Meta Description:</strong> ${meta ? meta[1] : "Missing"}</p>
-      <p><strong>H1 Count:</strong> ${h1s.length}</p>
-      <p><strong>Word Count:</strong> ${wordCount}</p>
-
-      <div class="score-box ${scoreClass}">
-        SEO Score: ${score} / 100
-      </div>
-
-      <h4>Recommendations</h4>
-      <ul>
-        ${tips.length ? tips.map(t => `<li>${t}</li>`).join("") : "<li class='good'>✅ No major issues found</li>"}
-      </ul>
-    `;
-  } catch {
-    result.innerHTML = "<p class='bad'>❌ Unable to analyze this website.</p>";
-  }
-}
-</script>
-
-</body>
-</html>
+    <h1>SEO Analyzer</h1>
+    <p class="subtitle">
+      Analyze your website’s on-page SEO and get instant recommendations.
+    </
