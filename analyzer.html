@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Webspere SEO Analyzer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body {
       margin: 0;
@@ -12,146 +11,129 @@
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      color: #333;
     }
 
     .card {
-      background: #ffffff;
+      background: #fff;
       padding: 25px;
+      width: 320px;
       border-radius: 12px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-    h1 {
+    h2 {
       margin-top: 0;
-      font-size: 22px;
     }
 
     input {
       width: 100%;
-      padding: 12px;
-      font-size: 15px;
+      padding: 10px;
+      margin: 15px 0;
       border-radius: 6px;
       border: 1px solid #ccc;
-      margin-bottom: 15px;
     }
 
     button {
       padding: 10px 14px;
+      margin: 5px;
       border: none;
       border-radius: 6px;
-      font-size: 14px;
       cursor: pointer;
-      margin: 5px;
+      color: #fff;
+      font-weight: bold;
     }
 
     .free {
-      background: #1e88e5;
-      color: #fff;
+      background: #007bff;
     }
 
     .paid {
-      background: #2e7d32;
-      color: #fff;
+      background: #28a745;
     }
 
-    #status {
+    .result {
       margin-top: 15px;
       font-size: 14px;
-      color: #555;
     }
 
-    #result {
-      margin-top: 15px;
-      text-align: left;
-      font-size: 14px;
+    .error {
+      color: red;
     }
 
-    .score {
-      margin: 6px 0;
+    .success {
+      color: green;
     }
 
     footer {
       margin-top: 15px;
-      font-size: 12px;
+      font-size: 11px;
       color: #666;
     }
   </style>
 </head>
-
 <body>
 
-  <div class="card">
-    <h1>Webspere SEO Analyzer</h1>
-    <p>Professional Website SEO & Performance Audit</p>
+<div class="card">
+  <h2>Webspere SEO Analyzer</h2>
+  <p>Professional Website SEO & Performance Audit</p>
 
-    <input
-      id="urlInput"
-      type="text"
-      placeholder="https://example.com"
-    />
+  <input type="text" id="urlInput" placeholder="https://example.com" />
 
-    <div>
-      <button class="free" onclick="analyzeWebsite()">Free Audit</button>
-      <button class="paid" onclick="alert('Paid audit coming next')">
-        ₹199 Full Audit
-      </button>
-    </div>
-
-    <div id="status"></div>
-    <div id="result"></div>
-
-    <footer>
-      Powered by Webspere<br/>
-      webspereglobal@gmail.com | 📞 9544842260
-    </footer>
+  <div>
+    <button class="free" onclick="runAudit()">Free Audit</button>
+    <button class="paid">₹199 Full Audit</button>
   </div>
 
-  <script>
-    async function analyzeWebsite() {
-      const url = document.getElementById("urlInput").value.trim();
-      const status = document.getElementById("status");
-      const result = document.getElementById("result");
+  <div id="result" class="result"></div>
 
-      if (!url) {
-        alert("Please enter a website URL");
-        return;
-      }
+  <footer>
+    Powered by Webspere<br/>
+    webspereglobal@gmail.com | 9544842260
+  </footer>
+</div>
 
-      status.innerHTML = "🔍 Analyzing website... please wait ⏳";
-      result.innerHTML = "";
+<script>
+  const API_BASE = "https://webspere-backend-1.onrender.com";
 
-      try {
-        const api =
-          "https://webspere-backend-1.onrender.com/analyze?url=" +
-          encodeURIComponent(url);
+  function runAudit() {
+    const url = document.getElementById("urlInput").value.trim();
+    const resultDiv = document.getElementById("result");
 
-        const response = await fetch(api);
+    if (!url) {
+      resultDiv.innerHTML = "<span class='error'>Please enter a valid URL</span>";
+      return;
+    }
 
-        if (!response.ok) {
-          throw new Error("Server error");
+    resultDiv.innerHTML = "Analyzing website... ⏳";
+
+    fetch(`${API_BASE}/analyze?url=${encodeURIComponent(url)}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          resultDiv.innerHTML = `<span class='error'>${data.error}</span>`;
+          return;
         }
 
-        const data = await response.json();
-
-        status.innerHTML = "✅ Analysis Complete";
-
-        result.innerHTML = `
-          <div class="score">⚡ Performance: <strong>${data.performance}</strong></div>
-          <div class="score">🔎 SEO: <strong>${data.seo}</strong></div>
-          <div class="score">♿ Accessibility: <strong>${data.accessibility}</strong></div>
-          <div class="score">🛠 Best Practices: <strong>${data.best_practices}</strong></div>
+        resultDiv.innerHTML = `
+          <div class="success">
+            <strong>Results:</strong><br/>
+            Performance: ${data.performance}<br/>
+            SEO: ${data.seo}<br/>
+            Accessibility: ${data.accessibility}<br/>
+            Best Practices: ${data.best_practices}
+          </div>
         `;
-      } catch (err) {
-        status.innerHTML = "❌ Unable to analyze website";
-        result.innerHTML = "Please try again later.";
-      }
-    }
-  </script>
+      })
+      .catch(err => {
+        resultDiv.innerHTML = "<span class='error'>Unable to analyze website</span>";
+        console.error(err);
+      });
+  }
+</script>
 
 </body>
 </html>
