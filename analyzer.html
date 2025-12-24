@@ -108,7 +108,11 @@
 </div>
 
 <footer>
-  Powered by <strong>Webspere</strong> • Ethical SEO Tools
+  Powered by <strong>Webspere</strong> |
+  📧 <a href="mailto:webspereglobal@gmail.com" style="color:#e0e7ff;">
+    webspereglobal@gmail.com
+  </a> |
+  📞 +91 95448 42260
 </footer>
 
 <script>
@@ -135,7 +139,6 @@ async function analyze() {
     const wordCount = text.trim().split(/\s+/).length;
 
     let score = 0;
-
     if (title) score += (title[1].length >= 50 && title[1].length <= 60) ? 20 : 10;
     if (meta) score += (meta[1].length >= 150 && meta[1].length <= 160) ? 20 : 10;
     if (h1s.length === 1) score += 20;
@@ -155,15 +158,15 @@ async function analyze() {
         SEO Score: ${score} / 100
       </div>
 
-      <h4>🔒 Full Recommendations</h4>
+      <h4>🔒 Full SEO Recommendations</h4>
       <p>
-        Detailed SEO fixes, keyword insights, and priority actions
-        are available in the professional report.
+        Detailed fixes, keyword insights, and priority actions
+        are available in the professional SEO report.
       </p>
 
       <p>
         <strong>👉 Get Full SEO Report</strong><br>
-        <a href="mailto:contact@webspere.com?subject=SEO Audit Request&body=Website URL: ${url}"
+        <a href="mailto:webspereglobal@gmail.com?subject=SEO Audit Request&body=Website URL: ${url}"
            style="color:#4f46e5; font-weight:bold;">
            Request Professional SEO Audit
         </a>
