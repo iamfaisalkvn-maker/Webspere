@@ -1,59 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Request SEO Audit – Webspere</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="topbar">
-  <div class="container nav">
-    <h1 class="logo">Webspere</h1>
-    <a href="index.html" class="nav-btn">Home</a>
-  </div>
+  <h1>Webspere</h1>
 </header>
 
-<section class="deliverables">
-  <div class="container">
-    <h3>Request a Professional SEO Audit</h3>
-    <p style="text-align:center;color:#555;margin-bottom:25px;">
-      Submit your website details. You’ll receive a response within 24 hours.
-    </p>
+<section class="form-section">
+  <h2>Request Paid SEO Audit</h2>
+  <p>Submit your website. We’ll respond within 24 hours.</p>
 
-    <form
-      action="https://formspree.io/f/FORM_ID_HERE"
-      method="POST"
-      class="price-box"
-    >
-      <!-- Redirect after submit -->
-      <input type="hidden" name="_next" value="thankyou.html">
-      <input type="hidden" name="_subject" value="New Webspere SEO Audit Request">
+  <!-- Formspree (email delivery) -->
+  <form action="https://formspree.io/f/xbllkzqr" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="url" name="website" placeholder="Website URL" required>
+    <textarea name="message" placeholder="Any notes (optional)"></textarea>
 
-      <label>Your Name</label>
-      <input type="text" name="name" required>
+    <button type="submit">Submit Request</button>
+  </form>
 
-      <label>Email Address</label>
-      <input type="email" name="email" required>
-
-      <label>Website URL</label>
-      <input type="url" name="website" placeholder="https://example.com" required>
-
-      <label>Message (optional)</label>
-      <textarea name="message" rows="5" placeholder="Tell me about your website"></textarea>
-
-      <button type="submit" class="cta dark" style="margin-top:20px;">
-        Submit Request
-      </button>
-    </form>
-  </div>
+  <p class="note">
+    India: You’ll receive a Razorpay payment link for <strong>₹1,000</strong>.<br>
+    International: You’ll receive a manual invoice for <strong>$29</strong>.
+  </p>
 </section>
 
-<footer class="footer">
-  <p>Email: webspereglobal@gmail.com</p>
-  <p>Phone / WhatsApp: +91 95448 42260</p>
-  <p>© 2025 Webspere. Manual SEO Audit Service.</p>
+<footer>
+  © 2025 Webspere
 </footer>
 
 </body>
