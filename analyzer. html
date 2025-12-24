@@ -8,46 +8,104 @@
 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f9;
-      padding: 30px;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f4f6fb;
+      color: #222;
     }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
     h1 {
       color: #0a3cff;
+      margin-bottom: 5px;
     }
-    input, button {
-      padding: 12px;
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    input {
       width: 100%;
-      margin-top: 10px;
+      padding: 14px;
       font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
+
     button {
+      margin-top: 15px;
+      padding: 14px;
+      width: 100%;
+      font-size: 16px;
       background: #0a3cff;
       color: white;
       border: none;
+      border-radius: 6px;
       cursor: pointer;
     }
-    .card {
-      background: white;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 6px;
+
+    button:hover {
+      background: #082dbd;
     }
-    .good { color: green; }
-    .warn { color: orange; }
-    .bad { color: red; }
+
+    .result {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f9fafc;
+      border-radius: 8px;
+    }
+
+    .score-box {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .good { color: #1a7f37; }
+    .warn { color: #b45309; }
+    .bad  { color: #b91c1c; }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #777;
+    }
   </style>
 </head>
 
 <body>
 
-<h1>SEO Analyzer</h1>
-<p>Analyze basic on-page SEO of any website.</p>
+<div class="container">
 
-<input type="text" id="url" placeholder="https://example.com">
-<button onclick="analyze()">Analyze</button>
+  <h1>SEO Analyzer</h1>
+  <p class="subtitle">
+    Run a quick on-page SEO audit and get actionable insights.
+  </p>
 
-<div class="card" id="result"></div>
+  <input type="text" id="url" placeholder="Enter website URL (https://example.com)">
+  <button onclick="analyze()">Run Free Audit</button>
+
+  <div class="result" id="result"></div>
+
+</div>
+
+<footer>
+  Powered by <strong>Webspere</strong> • Ethical SEO Tools
+</footer>
 
 <script>
 async function analyze() {
@@ -59,7 +117,7 @@ async function analyze() {
     return;
   }
 
-  result.innerHTML = "⏳ Analyzing website...";
+  result.innerHTML = "⏳ Analyzing website…";
 
   try {
     const api = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
@@ -75,70 +133,56 @@ async function analyze() {
     let score = 0;
     let tips = [];
 
-    // TITLE
     if (title) {
-      const len = title[1].length;
-      if (len >= 50 && len <= 60) {
-        score += 20;
-      } else {
-        score += 10;
+      score += (title[1].length >= 50 && title[1].length <= 60) ? 20 : 10;
+      if (title[1].length < 50 || title[1].length > 60)
         tips.push("⚠️ Title length should be 50–60 characters.");
-      }
     } else {
       tips.push("❌ Missing title tag.");
     }
 
-    // META DESCRIPTION
     if (meta) {
-      const len = meta[1].length;
-      if (len >= 150 && len <= 160) {
-        score += 20;
-      } else {
-        score += 10;
+      score += (meta[1].length >= 150 && meta[1].length <= 160) ? 20 : 10;
+      if (meta[1].length < 150 || meta[1].length > 160)
         tips.push("⚠️ Meta description should be 150–160 characters.");
-      }
     } else {
       tips.push("❌ Missing meta description.");
     }
 
-    // H1
     if (h1s.length === 1) {
       score += 20;
     } else if (h1s.length === 0) {
       tips.push("❌ No H1 tag found.");
     } else {
-      tips.push("⚠️ Multiple H1 tags found. Use only one.");
+      tips.push("⚠️ Multiple H1 tags detected.");
       score += 10;
     }
 
-    // WORD COUNT
-    if (wordCount >= 500) {
-      score += 20;
-    } else {
-      tips.push("⚠️ Content is too short. Aim for 500+ words.");
-      score += 10;
-    }
+    score += wordCount >= 500 ? 20 : 10;
+    if (wordCount < 500)
+      tips.push("⚠️ Content is short. Aim for 500+ words.");
 
-    // BASE STRUCTURE
     if (html.length > 3000) score += 20;
 
-    result.innerHTML = `
-      <h3>SEO Audit Result</h3>
+    const scoreClass = score >= 80 ? "good" : score >= 50 ? "warn" : "bad";
 
-      <p><strong>Title:</strong> ${title ? title[1] : "<span class='bad'>Missing</span>"}</p>
-      <p><strong>Meta Description:</strong> ${meta ? meta[1] : "<span class='bad'>Missing</span>"}</p>
+    result.innerHTML = `
+      <h3>Audit Summary</h3>
+      <p><strong>Page Title:</strong> ${title ? title[1] : "Missing"}</p>
+      <p><strong>Meta Description:</strong> ${meta ? meta[1] : "Missing"}</p>
       <p><strong>H1 Count:</strong> ${h1s.length}</p>
       <p><strong>Word Count:</strong> ${wordCount}</p>
 
-      <h3>SEO Score: ${score} / 100</h3>
+      <div class="score-box ${scoreClass}">
+        SEO Score: ${score} / 100
+      </div>
 
       <h4>Recommendations</h4>
       <ul>
         ${tips.length ? tips.map(t => `<li>${t}</li>`).join("") : "<li class='good'>✅ No major issues found</li>"}
       </ul>
     `;
-
-  } catch (err) {
+  } catch {
     result.innerHTML = "<p class='bad'>❌ Unable to analyze this website.</p>";
   }
 }
