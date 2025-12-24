@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Webspere – SEO & Content Promotion Platform</title>
+
+  <!-- SEO META TAGS -->
+  <meta name="description" content="Webspere is a global SEO-based content promotion and digital visibility platform.">
+  <meta name="keywords" content="SEO promotion, content marketing, backlink services, website promotion">
+  <meta name="author" content="Webspere">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+  <h1>Webspere</h1>
+  <p><strong>Global SEO & Content Promotion Platform</strong></p>
+
+  <hr>
+
+  <h2>What We Do</h2>
+  <p>
+    Webspere helps businesses grow online by publishing SEO-optimized
+    content and promoting websites through ethical digital methods.
+  </p>
+
+  <h2>Our Services</h2>
+  <ul>
+    <li>SEO Content Publishing</li>
+    <li>Website & Link Promotion</li>
+    <li>Backlink Placement</li>
+    <li>Digital Visibility Boost</li>
+  </ul>
+
+  <h2>Client Example</h2>
+  <p>
+    Example client promotion:
+    <a href="https://www.simpaticohrit.com" target="_blank">
+      Simpatico HR Consultancy
+    </a>
+  </p>
+
+  <hr>
+
+  <p>© 2025 Webspere</p>
+
+</body>
+</html>
