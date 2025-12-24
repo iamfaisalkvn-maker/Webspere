@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SEO Analyzer – Webspere</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      padding: 30px;
+    }
+    h1 {
+      color: #0a3cff;
+    }
+    input, button {
+      padding: 10px;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    button {
+      background: #0a3cff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .result {
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>SEO Analyzer</h1>
+<p>Enter a website URL to analyze basic on-page SEO.</p>
+
+<input type="text" id="url" placeholder="https://example.com">
+<button onclick="analyze()">Analyze</button>
+
+<div class="result" id="result"></div>
+
+<script>
+async function analyze() {
+  const url = document.getElementById("url").value;
+  const resultDiv = document.getElementById("result");
+
+  if (!url) {
+    resultDiv.innerHTML = "❌ Please enter a URL.";
+    return;
+  }
+
+  resultDiv.innerHTML = "⏳ Analyzing...";
+
+  try {
+    const api = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+    const response = await fetch(api);
+    const html = await response.text();
+
+    const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+    const metaMatch = html.match(/<meta name="description" content="(.*?)"/i);
+    const h1Match = html.match(/<h1[^>]*>(.*?)<\/h1>/i);
+
+    let score = 0;
+
+    if (titleMatch) score += 25;
+    if (metaMatch) score += 25;
+    if (h1Match) score += 25;
+    if (html.length > 3000) score += 25;
+
+    resultDiv.innerHTML = `
+      <h3>SEO Analysis Result</h3>
+      <p><strong>Title:</strong> ${titleMatch ? titleMatch[1] : "❌ Missing"}</p>
+      <p><strong>Meta Description:</strong> ${metaMatch ? metaMatch[1] : "❌ Missing"}</p>
+      <p><strong>H1 Tag:</strong> ${h1Match ? h1Match[1] : "❌ Missing"}</p>
+      <p><strong>SEO Score:</strong> ${score} / 100</p>
+    `;
+
+  } catch (error) {
+    resultDiv.innerHTML = "❌ Unable to analyze this website.";
+  }
+}
+</script>
+
+</body>
+</html>
