@@ -4,208 +4,154 @@
   <meta charset="UTF-8" />
   <title>Webspere SEO Analyzer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Professional SEO & Website Performance Audit Tool" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <style>
-    * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
     body {
       margin: 0;
-      min-height: 100vh;
+      font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
     }
-    .container {
-      background: #fff;
+
+    .card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 12px;
       width: 100%;
-      max-width: 850px;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 20px 40px rgba(0,0,0,.3);
+      max-width: 420px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
     }
+
     h1 {
-      text-align: center;
-      color: #0f2027;
-      margin-bottom: 5px;
+      margin-top: 0;
+      font-size: 22px;
     }
-    .subtitle {
-      text-align: center;
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 25px;
-    }
-    .input-group {
-      display: flex;
-      gap: 10px;
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
       margin-bottom: 15px;
     }
-    input {
-      flex: 1;
-      padding: 14px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
+
     button {
-      padding: 14px 20px;
-      border-radius: 8px;
+      padding: 10px 14px;
       border: none;
-      font-weight: 600;
+      border-radius: 6px;
+      font-size: 14px;
       cursor: pointer;
+      margin: 5px;
     }
-    .free-btn {
-      background: linear-gradient(135deg,#0072ff,#00c6ff);
+
+    .free {
+      background: #1e88e5;
       color: #fff;
     }
-    .paid-btn {
-      background: linear-gradient(135deg,#22c55e,#16a34a);
+
+    .paid {
+      background: #2e7d32;
       color: #fff;
     }
-    .loading {
-      display: none;
-      text-align: center;
-      margin: 20px 0;
-      font-weight: 600;
-      color: #0072ff;
-    }
-    .results {
-      display: none;
-      margin-top: 25px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
-      gap: 15px;
-    }
-    .card {
-      padding: 20px;
-      border-radius: 12px;
-      color: #fff;
-      text-align: center;
-      font-weight: 600;
-    }
-    .performance { background: linear-gradient(135deg,#ff9800,#ff5722); }
-    .seo { background: linear-gradient(135deg,#4caf50,#2e7d32); }
-    .accessibility { background: linear-gradient(135deg,#9c27b0,#6a1b9a); }
-    .best { background: linear-gradient(135deg,#2196f3,#0d47a1); }
-    .score {
-      font-size: 34px;
-      margin-top: 10px;
-    }
-    .footer {
-      margin-top: 25px;
-      text-align: center;
-      font-size: 13px;
+
+    #status {
+      margin-top: 15px;
+      font-size: 14px;
       color: #555;
     }
-    @media(max-width:600px){
-      .input-group { flex-direction: column; }
+
+    #result {
+      margin-top: 15px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .score {
+      margin: 6px 0;
+    }
+
+    footer {
+      margin-top: 15px;
+      font-size: 12px;
+      color: #666;
     }
   </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1>Webspere SEO Analyzer</h1>
-  <p class="subtitle">Professional Website SEO & Performance Audit</p>
+  <div class="card">
+    <h1>Webspere SEO Analyzer</h1>
+    <p>Professional Website SEO & Performance Audit</p>
 
-  <div class="input-group">
-    <input id="urlInput" placeholder="https://example.com" />
-    <button class="free-btn" onclick="runFreeAudit()">Free Audit</button>
-    <button class="paid-btn" onclick="payForAudit()">₹199 Full Audit</button>
-  </div>
+    <input
+      id="urlInput"
+      type="text"
+      placeholder="https://example.com"
+    />
 
-  <div class="loading" id="loading">Analyzing website… please wait ⏳</div>
-
-  <div class="results" id="results">
-    <div class="grid">
-      <div class="card performance">
-        Performance
-        <div class="score" id="performance">--</div>
-      </div>
-      <div class="card seo">
-        SEO
-        <div class="score" id="seo">🔒</div>
-      </div>
-      <div class="card accessibility">
-        Accessibility
-        <div class="score" id="accessibility">🔒</div>
-      </div>
-      <div class="card best">
-        Best Practices
-        <div class="score" id="best">🔒</div>
-      </div>
+    <div>
+      <button class="free" onclick="analyzeWebsite()">Free Audit</button>
+      <button class="paid" onclick="alert('Paid audit coming next')">
+        ₹199 Full Audit
+      </button>
     </div>
+
+    <div id="status"></div>
+    <div id="result"></div>
+
+    <footer>
+      Powered by Webspere<br/>
+      webspereglobal@gmail.com | 📞 9544842260
+    </footer>
   </div>
 
-  <div class="footer">
-    Powered by <strong>Webspere</strong><br>
-    webspereglobal@gmail.com | 📞 9544842260
-  </div>
-</div>
+  <script>
+    async function analyzeWebsite() {
+      const url = document.getElementById("urlInput").value.trim();
+      const status = document.getElementById("status");
+      const result = document.getElementById("result");
 
-<script>
-const API = "https://webspere-backend-1.onrender.com/analyze?url=";
+      if (!url) {
+        alert("Please enter a website URL");
+        return;
+      }
 
-function runFreeAudit() {
-  const url = document.getElementById("urlInput").value.trim();
-  if (!url) return alert("Enter website URL");
+      status.innerHTML = "🔍 Analyzing website... please wait ⏳";
+      result.innerHTML = "";
 
-  document.getElementById("loading").style.display = "block";
-  document.getElementById("results").style.display = "none";
+      try {
+        const api =
+          "https://webspere-backend-1.onrender.com/analyze?url=" +
+          encodeURIComponent(url);
 
-  fetch(API + encodeURIComponent(url))
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("loading").style.display = "none";
-      document.getElementById("performance").innerText = data.performance;
-      document.getElementById("seo").innerText = "🔒";
-      document.getElementById("accessibility").innerText = "🔒";
-      document.getElementById("best").innerText = "🔒";
-      document.getElementById("results").style.display = "block";
-    });
-}
+        const response = await fetch(api);
 
-function payForAudit() {
-  const url = document.getElementById("urlInput").value.trim();
-  if (!url) return alert("Enter website URL first");
+        if (!response.ok) {
+          throw new Error("Server error");
+        }
 
-  var options = {
-    key: "RAZORPAY_KEY_ID_HERE",   // 🔴 REPLACE THIS
-    amount: 19900,
-    currency: "INR",
-    name: "Webspere SEO Audit",
-    description: "Full Website Audit",
-    handler: function () {
-      runPaidAudit(url);
-    },
-    theme: { color: "#16a34a" }
-  };
-  new Razorpay(options).open();
-}
+        const data = await response.json();
 
-function runPaidAudit(url) {
-  document.getElementById("loading").style.display = "block";
-  document.getElementById("results").style.display = "none";
+        status.innerHTML = "✅ Analysis Complete";
 
-  fetch(API + encodeURIComponent(url))
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("loading").style.display = "none";
-      document.getElementById("performance").innerText = data.performance;
-      document.getElementById("seo").innerText = data.seo;
-      document.getElementById("accessibility").innerText = data.accessibility;
-      document.getElementById("best").innerText = data.best_practices;
-      document.getElementById("results").style.display = "block";
-    });
-}
-</script>
+        result.innerHTML = `
+          <div class="score">⚡ Performance: <strong>${data.performance}</strong></div>
+          <div class="score">🔎 SEO: <strong>${data.seo}</strong></div>
+          <div class="score">♿ Accessibility: <strong>${data.accessibility}</strong></div>
+          <div class="score">🛠 Best Practices: <strong>${data.best_practices}</strong></div>
+        `;
+      } catch (err) {
+        status.innerHTML = "❌ Unable to analyze website";
+        result.innerHTML = "Please try again later.";
+      }
+    }
+  </script>
 
 </body>
 </html>
