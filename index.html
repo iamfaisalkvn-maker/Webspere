@@ -5,104 +5,177 @@
   <meta charset="UTF-8" />
   <title>Webspere – Professional SEO Audit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- Razorpay Checkout -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    header {
+      background: linear-gradient(135deg, #5b5bff, #7c7cff);
+      color: #fff;
+      padding: 16px 22px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 26px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: 700;
+      color: #5b5bff;
+      margin: 10px 0;
+    }
+
+    button {
+      background: linear-gradient(135deg, #5b5bff, #7c7cff);
+      color: #fff;
+      border: none;
+      padding: 14px 22px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 600;
+    }
+
+    button:hover {
+      opacity: 0.95;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 10px;
+    }
+
+    .contact a {
+      color: #5b5bff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="container nav">
-    <div class="logo">Webspere</div>
-    <a href="#contact" class="btn-primary">Request Audit</a>
+<header>Webspere</header>
+
+<div class="container">
+
+  <!-- SERVICE -->
+  <div class="card">
+    <h1>Professional SEO Audit</h1>
+    <p><strong>Manual Review</strong></p>
+
+    <ul>
+      <li>Manual SEO & website review</li>
+      <li>On-page & basic technical checks</li>
+      <li>Mobile & usability analysis</li>
+      <li>Clear PDF report within 24–48 hours</li>
+    </ul>
+
+    <p class="note">
+      Analysis & recommendations only. Fixing is not included.
+    </p>
   </div>
-</header>
 
-<section class="hero">
-  <div class="container hero-grid">
+  <!-- PRICING & PAYMENT -->
+  <div class="card">
+    <h2>Pricing</h2>
 
-    <div class="hero-text">
-      <h1>Professional SEO Audit<br><span>Manual Review</span></h1>
+    <p class="price">₹1,000 – Professional SEO Audit</p>
 
-      <p class="subtitle">
-        A human-reviewed SEO audit to identify real issues affecting your website’s
-        visibility, performance, and usability.
-      </p>
+    <p>
+      India: Razorpay (UPI / Cards / Net Banking)<br>
+      International: AirTM (manual payment after request)
+    </p>
 
-      <ul class="features">
-        <li>✔ Manual SEO & website review</li>
-        <li>✔ On-page & basic technical checks</li>
-        <li>✔ Mobile & usability analysis</li>
-        <li>✔ Clear PDF report within 24–48 hours</li>
-      </ul>
+    <button id="payBtn">Pay ₹1,000 Now</button>
 
-      <a href="#contact" class="btn-primary">Request Paid SEO Audit</a>
-      <p class="note">Analysis & recommendations only. Fixing not included.</p>
-    </div>
-
-    <div class="hero-image">
-      <img src="seo-illustration.png" alt="SEO Audit Illustration">
-    </div>
-
+    <p class="note">
+      Secure payment powered by Razorpay
+    </p>
   </div>
-</section>
 
-<section class="pricing">
-  <div class="container">
-    <div class="card center">
-      <h2>Pricing</h2>
-      <p class="price">₹1,000 – Professional SEO Audit</p>
-      <p class="small">
-        India: Razorpay (UPI / Cards)<br>
-        International: $29 (manual invoice)
-      </p>
-    </div>
+  <!-- CONTACT -->
+  <div class="card contact">
+    <h2>Contact</h2>
+    <p>Email: <strong>webspereglobal@gmail.com</strong></p>
+    <p>WhatsApp: <strong>+91 95448 42260</strong></p>
+    <a href="https://wa.me/919544842260" target="_blank">Chat on WhatsApp</a>
   </div>
-</section>
 
-<section id="contact" class="contact">
-  <div class="container">
-    <div class="card">
-
-      <h2>Request Paid SEO Audit</h2>
-      <p class="small">Submit your website. We’ll respond within 24 hours.</p>
-
-      <!-- ✅ WORKING FORM (NO FORMSPREE) -->
-      <form action="https://formsubmit.co/webspereglobal@gmail.com" method="POST">
-
-        <!-- hidden settings -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="New SEO Audit Request">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://iamfaisalkvn-maker.github.io/Webspere/thankyou.html">
-
-        <div class="form-grid">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
-          <input type="url" name="website" placeholder="Website URL" required>
-        </div>
-
-        <textarea name="message" placeholder="Any notes (optional)"></textarea>
-
-        <button type="submit" class="btn-primary full">
-          Submit Request
-        </button>
-      </form>
-
-      <div class="contact-info">
-        <p><strong>Email:</strong> webspereglobal@gmail.com</p>
-        <p><strong>WhatsApp:</strong> +91 95448 42260</p>
-        <a class="whatsapp" href="https://wa.me/919544842260" target="_blank">
-          Chat on WhatsApp
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
+</div>
 
 <footer>
   © 2025 Webspere. Manual SEO Audit Service.
 </footer>
+
+<script>
+  document.getElementById("payBtn").onclick = function () {
+    var options = {
+      key: "rzp_live_RvhHi7Pjg1SFkF", // 🔐 PASTE ONLY KEY ID
+      amount: 100000, // 
+      currency: "INR",Pay ₹10 (Test)
+      name: "Webspere",
+      description: "Professional SEO Audit",
+      handler: function (response) {
+        alert(
+          "Payment successful!\nPayment ID: " +
+          response.razorpay_payment_id +
+          "\nPlease email or WhatsApp us your website URL."
+        );
+      },
+      theme: {
+        color: "#5b5bff"
+      }
+    };
+
+    var rzp = new Razorpay(options);
+    rzp.open();
+  };
+</script>
 
 </body>
 </html>
