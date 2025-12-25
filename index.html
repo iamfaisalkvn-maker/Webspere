@@ -2,14 +2,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- BASIC -->
   <meta charset="UTF-8" />
-  <meta name="google-site-verification" content="lFgRZODFwRbazYKxed-CHP7-zfau05-5mpmReOpA5mo" />
-  <title>Webspere – Professional SEO Audit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Razorpay -->
+  <!-- GOOGLE SEARCH CONSOLE VERIFICATION -->
+  <meta name="google-site-verification" content="lFgRZODFwRbazYKxed-CHP7-zfau05-5mpmReOpA5mo" />
+
+  <!-- SEO META TAGS -->
+  <title>Webspere – Professional SEO Audit & Digital Services</title>
+  <meta name="description" content="Webspere offers professional SEO audits, website optimization, digital strategy, and modern web services. Manual SEO audit delivered in 24–48 hours." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Webspere" />
+
+  <!-- OPEN GRAPH (WhatsApp / LinkedIn) -->
+  <meta property="og:title" content="Webspere – Professional SEO Audit" />
+  <meta property="og:description" content="Manual SEO audit with actionable insights. Delivery in 24–48 hours. Trusted digital solutions by Webspere." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://iamfaisalkvn-maker.github.io/Webspere/" />
+  <meta property="og:image" content="https://iamfaisalkvn-maker.github.io/Webspere/og-image.png" />
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Webspere – Professional SEO Audit" />
+  <meta name="twitter:description" content="Professional SEO audits, website optimization & digital services. Report in 24–48 hours." />
+  <meta name="twitter:image" content="https://iamfaisalkvn-maker.github.io/Webspere/og-image.png" />
+
+  <!-- RAZORPAY -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
+  <!-- STYLES -->
   <style>
     * { box-sizing: border-box; }
 
@@ -42,9 +64,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
 
-    h1, h2 {
-      margin-top: 0;
-    }
+    h1, h2 { margin-top: 0; }
 
     .price {
       font-size: 26px;
@@ -61,9 +81,7 @@
       margin-top: 10px;
     }
 
-    select {
-      border: 1px solid #ccc;
-    }
+    select { border: 1px solid #ccc; }
 
     button {
       background: linear-gradient(135deg, #5b5bff, #7c7cff);
@@ -73,9 +91,7 @@
       font-weight: 600;
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
     .note {
       font-size: 13px;
@@ -102,12 +118,12 @@
   <div class="card">
     <h1>Professional SEO Audit</h1>
     <p><strong>Manual Review • Report in 24–48 hours</strong></p>
+    <p>Detailed SEO audit covering on-page, technical SEO, content, and performance.</p>
   </div>
 
-  <!-- COUNTRY SELECTOR -->
+  <!-- COUNTRY SELECT -->
   <div class="card">
-    <h2>Choose Your Country</h2>
-
+    <h2>Select Your Country</h2>
     <select id="countrySelect">
       <option value="">-- Select your country --</option>
       <option value="IN">India</option>
@@ -116,13 +132,10 @@
       <option value="INTL">Europe</option>
       <option value="INTL">Other Countries</option>
     </select>
-
-    <p class="note">
-      Pricing and payment method will update based on your selection.
-    </p>
+    <p class="note">Pricing and payment options will change based on selection.</p>
   </div>
 
-  <!-- INDIA PAYMENT -->
+  <!-- INDIA -->
   <div class="card hidden" id="indiaBlock">
     <h2>Pricing (India)</h2>
     <p class="price">₹1,000 – Professional SEO Audit</p>
@@ -130,26 +143,21 @@
     <p class="note">Secure payment via Razorpay</p>
   </div>
 
-  <!-- INTERNATIONAL PAYMENT -->
+  <!-- INTERNATIONAL -->
   <div class="card hidden" id="intlBlock">
     <h2>Pricing (International)</h2>
     <p class="price">$29 USD – Professional SEO Audit</p>
-
     <p>
-      Payment Method: <strong>AirTM</strong><br><br>
-      After submitting your audit request, payment instructions will be
-      shared via email.
+      Payment via <strong>AirTM</strong><br>
+      Payment instructions will be shared by email.
     </p>
-
-    <p class="note">
-      Audit delivery within 24–48 hours after payment confirmation.
-    </p>
+    <p class="note">Delivery within 24–48 hours after confirmation.</p>
   </div>
 
 </div>
 
 <footer>
-  © 2025 Webspere. Manual SEO Audit Service.
+  © 2025 Webspere. All rights reserved.
 </footer>
 
 <script>
@@ -161,16 +169,10 @@
     indiaBlock.classList.add("hidden");
     intlBlock.classList.add("hidden");
 
-    if (this.value === "IN") {
-      indiaBlock.classList.remove("hidden");
-    }
-
-    if (this.value === "INTL") {
-      intlBlock.classList.remove("hidden");
-    }
+    if (this.value === "IN") indiaBlock.classList.remove("hidden");
+    if (this.value === "INTL") intlBlock.classList.remove("hidden");
   });
 
-  // Razorpay (India only)
   document.getElementById("payBtn").onclick = function () {
     var options = {
       key: "rzp_live_RvhHi7Pjg1SFkF",
@@ -180,12 +182,9 @@
       description: "Professional SEO Audit",
       handler: function (response) {
         alert(
-          "✅ PAYMENT RECEIVED\n\n" +
-          "Service: Professional SEO Audit\n" +
-          "Amount Paid: ₹1,000\n" +
-          "Payment ID: " + response.razorpay_payment_id + "\n\n" +
-          "Please email or WhatsApp us your website URL.\n" +
-          "Audit delivery: 24–48 hours."
+          "Payment successful!\n\n" +
+          "Payment ID: " + response.razorpay_payment_id +
+          "\n\nPlease share your website URL via email or WhatsApp."
         );
       }
     };
