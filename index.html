@@ -6,13 +6,11 @@
   <title>Webspere – Professional SEO Audit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Razorpay Checkout -->
+  <!-- Razorpay -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -36,7 +34,7 @@
     }
 
     .card {
-      background: #ffffff;
+      background: #fff;
       border-radius: 14px;
       padding: 26px;
       margin-bottom: 25px;
@@ -47,14 +45,6 @@
       margin-top: 0;
     }
 
-    ul {
-      padding-left: 20px;
-    }
-
-    li {
-      margin-bottom: 8px;
-    }
-
     .price {
       font-size: 26px;
       font-weight: 700;
@@ -62,32 +52,34 @@
       margin: 12px 0;
     }
 
+    select, button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    select {
+      border: 1px solid #ccc;
+    }
+
     button {
       background: linear-gradient(135deg, #5b5bff, #7c7cff);
       color: #fff;
       border: none;
-      padding: 14px 22px;
-      font-size: 16px;
-      border-radius: 10px;
       cursor: pointer;
-      width: 100%;
       font-weight: 600;
     }
 
-    button:hover {
-      opacity: 0.95;
+    .hidden {
+      display: none;
     }
 
     .note {
       font-size: 13px;
       color: #6b7280;
       margin-top: 10px;
-    }
-
-    .contact a {
-      color: #5b5bff;
-      text-decoration: none;
-      font-weight: 600;
     }
 
     footer {
@@ -105,47 +97,52 @@
 
 <div class="container">
 
-  <!-- SERVICE DETAILS -->
+  <!-- SERVICE -->
   <div class="card">
     <h1>Professional SEO Audit</h1>
-    <p><strong>Manual Review</strong></p>
+    <p><strong>Manual Review • Report in 24–48 hours</strong></p>
+  </div>
 
-    <ul>
-      <li>Manual SEO & website review</li>
-      <li>On-page & basic technical checks</li>
-      <li>Mobile & usability analysis</li>
-      <li>Clear PDF report within 24–48 hours</li>
-    </ul>
+  <!-- COUNTRY SELECTOR -->
+  <div class="card">
+    <h2>Choose Your Country</h2>
+
+    <select id="countrySelect">
+      <option value="">-- Select your country --</option>
+      <option value="IN">India</option>
+      <option value="INTL">United States</option>
+      <option value="INTL">United Kingdom</option>
+      <option value="INTL">Europe</option>
+      <option value="INTL">Other Countries</option>
+    </select>
 
     <p class="note">
-      Analysis & recommendations only. Fixing is not included.
+      Pricing and payment method will update based on your selection.
     </p>
   </div>
 
-  <!-- PRICING & PAYMENT -->
-  <div class="card">
-    <h2>Pricing</h2>
-
+  <!-- INDIA PAYMENT -->
+  <div class="card hidden" id="indiaBlock">
+    <h2>Pricing (India)</h2>
     <p class="price">₹1,000 – Professional SEO Audit</p>
+    <button id="payBtn">Pay ₹1,000 Now</button>
+    <p class="note">Secure payment via Razorpay</p>
+  </div>
+
+  <!-- INTERNATIONAL PAYMENT -->
+  <div class="card hidden" id="intlBlock">
+    <h2>Pricing (International)</h2>
+    <p class="price">$29 USD – Professional SEO Audit</p>
 
     <p>
-      India: Razorpay (UPI / Cards / Net Banking)<br />
-      International: AirTM (manual invoice)
+      Payment Method: <strong>AirTM</strong><br><br>
+      After submitting your audit request, payment instructions will be
+      shared via email.
     </p>
-
-    <button id="payBtn">Pay ₹1,000 Now</button>
 
     <p class="note">
-      Secure payment powered by Razorpay
+      Audit delivery within 24–48 hours after payment confirmation.
     </p>
-  </div>
-
-  <!-- CONTACT -->
-  <div class="card contact">
-    <h2>Contact</h2>
-    <p>Email: <strong>webspereglobal@gmail.com</strong></p>
-    <p>WhatsApp: <strong>+91 95448 42260</strong></p>
-    <a href="https://wa.me/919544842260" target="_blank">Chat on WhatsApp</a>
   </div>
 
 </div>
@@ -154,39 +151,44 @@
   © 2025 Webspere. Manual SEO Audit Service.
 </footer>
 
-<!-- PAYMENT SCRIPT -->
 <script>
-  document.getElementById("payBtn").onclick = function () {
+  const countrySelect = document.getElementById("countrySelect");
+  const indiaBlock = document.getElementById("indiaBlock");
+  const intlBlock = document.getElementById("intlBlock");
 
+  countrySelect.addEventListener("change", function () {
+    indiaBlock.classList.add("hidden");
+    intlBlock.classList.add("hidden");
+
+    if (this.value === "IN") {
+      indiaBlock.classList.remove("hidden");
+    }
+
+    if (this.value === "INTL") {
+      intlBlock.classList.remove("hidden");
+    }
+  });
+
+  // Razorpay (India only)
+  document.getElementById("payBtn").onclick = function () {
     var options = {
-      key: "rzp_live_RvhHi7Pjg1SFkF", // ✅ Your Razorpay LIVE Key ID
-      amount: 100000, // ₹1,000 in paise
+      key: "rzp_live_RvhHi7Pjg1SFkF",
+      amount: 100000,
       currency: "INR",
       name: "Webspere",
       description: "Professional SEO Audit",
-
       handler: function (response) {
         alert(
           "✅ PAYMENT RECEIVED\n\n" +
-          "Invoice Summary\n" +
-          "-------------------------\n" +
           "Service: Professional SEO Audit\n" +
           "Amount Paid: ₹1,000\n" +
           "Payment ID: " + response.razorpay_payment_id + "\n\n" +
-          "Next Steps:\n" +
-          "• Please email or WhatsApp us your website URL\n" +
-          "• Audit report will be delivered within 24–48 hours\n\n" +
-          "Thank you for choosing Webspere."
+          "Please email or WhatsApp us your website URL.\n" +
+          "Audit delivery: 24–48 hours."
         );
-      },
-
-      theme: {
-        color: "#5b5bff"
       }
     };
-
-    var rzp = new Razorpay(options);
-    rzp.open();
+    new Razorpay(options).open();
   };
 </script>
 
