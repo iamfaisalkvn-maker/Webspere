@@ -151,20 +151,18 @@
 <footer>
   © 2025 Webspere. Manual SEO Audit Service.
 </footer>
-
 <script>
   document.getElementById("payBtn").onclick = function () {
     var options = {
-      key: "rzp_live_RvhHi7Pjg1SFkF", // 🔐 PASTE ONLY KEY ID
-      amount: 100000, // 
-      currency: "INR",Pay ₹10 (Test)
+      key: "rzp_live_RvhHi7Pjg1SFkF",   // Key ID only
+      amount: 1000,                   // ₹10 = 1000 paise (TEST)
+      currency: "INR",
       name: "Webspere",
-      description: "Professional SEO Audit",
+      description: "Professional SEO Audit (Test)",
       handler: function (response) {
         alert(
-          "Payment successful!\nPayment ID: " +
-          response.razorpay_payment_id +
-          "\nPlease email or WhatsApp us your website URL."
+          "Payment successful!\n" +
+          "Payment ID: " + response.razorpay_payment_id
         );
       },
       theme: {
