@@ -2,40 +2,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Webspere – Professional SEO Audit</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<header>
-  <h1>Webspere</h1>
-  <a href="contact.html">Request Audit</a>
+<header class="topbar">
+  <div class="container nav">
+    <div class="logo">Webspere</div>
+    <a href="#contact" class="btn-primary">Request Audit</a>
+  </div>
 </header>
 
 <section class="hero">
-  <div class="hero-inner">
+  <div class="container hero-grid">
 
     <div class="hero-text">
-      <h2>Professional SEO Audit<br><span>Manual Review</span></h2>
+      <h1>Professional SEO Audit<br><span>Manual Review</span></h1>
 
-      <p>
+      <p class="subtitle">
         A human-reviewed SEO audit to identify real issues affecting your website’s
         visibility, performance, and usability.
       </p>
 
-      <ul>
+      <ul class="features">
         <li>✔ Manual SEO & website review</li>
         <li>✔ On-page & basic technical checks</li>
         <li>✔ Mobile & usability analysis</li>
-        <li>✔ Clear PDF report (24–48 hours)</li>
+        <li>✔ Clear PDF report within 24–48 hours</li>
       </ul>
 
-      <a href="contact.html">Request Paid SEO Audit</a>
-      <div class="note">
-        Analysis & recommendations only. Fixing not included.
-      </div>
+      <a href="#contact" class="btn-primary">Request Paid SEO Audit</a>
+      <p class="note">Analysis & recommendations only. Fixing not included.</p>
     </div>
 
     <div class="hero-image">
@@ -45,27 +46,52 @@
   </div>
 </section>
 
-<section>
-  <div class="card">
-    <h3>Pricing</h3>
-    <div class="price">₹1,000 – Professional SEO Audit</div>
-    <p>
-      India: Razorpay (UPI / Cards)<br>
-      International: $29 (manual invoice)
-    </p>
+<section class="pricing">
+  <div class="container">
+    <div class="card center">
+      <h2>Pricing</h2>
+      <p class="price">₹1,000 – Professional SEO Audit</p>
+      <p class="small">
+        India: Razorpay (UPI / Cards)<br>
+        International: $29 (manual invoice)
+      </p>
+    </div>
   </div>
 </section>
 
-<section>
-  <div class="card contact">
-    <h3>Contact</h3>
-    <p>Email: webspereglobal@gmail.com</p>
-    <p>WhatsApp: +91 95448 42260</p>
-    <p>
-      <a href="https://wa.me/919544842260" target="_blank">
-        Chat on WhatsApp
-      </a>
-    </p>
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="card">
+
+      <h2>Request Paid SEO Audit</h2>
+      <p class="small">Submit your website. We’ll respond within 24 hours.</p>
+
+      <!-- FORM (WORKING WITH FORMSPREE) -->
+      <form action="https://formspree.io/f/REPLACE_WITH_YOUR_ID" method="POST">
+
+        <div class="form-grid">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="url" name="website" placeholder="Website URL" required>
+        </div>
+
+        <textarea name="message" placeholder="Any notes (optional)"></textarea>
+
+        <!-- redirect after submit -->
+        <input type="hidden" name="_redirect" value="thankyou.html">
+
+        <button type="submit" class="btn-primary full">Submit Request</button>
+      </form>
+
+      <div class="contact-info">
+        <p><strong>Email:</strong> webspereglobal@gmail.com</p>
+        <p><strong>WhatsApp:</strong> +91 95448 42260</p>
+        <a class="whatsapp" href="https://wa.me/919544842260" target="_blank">
+          Chat on WhatsApp
+        </a>
+      </div>
+
+    </div>
   </div>
 </section>
 
