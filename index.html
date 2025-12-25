@@ -66,8 +66,14 @@
       <h2>Request Paid SEO Audit</h2>
       <p class="small">Submit your website. We’ll respond within 24 hours.</p>
 
-      <!-- FORM (WORKING WITH FORMSPREE) -->
-      <form action="https://formspree.io/f/REPLACE_WITH_YOUR_ID" method="POST">
+      <!-- ✅ WORKING FORM (NO FORMSPREE) -->
+      <form action="https://formsubmit.co/webspereglobal@gmail.com" method="POST">
+
+        <!-- hidden settings -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New SEO Audit Request">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://iamfaisalkvn-maker.github.io/Webspere/thankyou.html">
 
         <div class="form-grid">
           <input type="text" name="name" placeholder="Your Name" required>
@@ -77,10 +83,9 @@
 
         <textarea name="message" placeholder="Any notes (optional)"></textarea>
 
-        <!-- redirect after submit -->
-        <input type="hidden" name="_redirect" value="thankyou.html">
-
-        <button type="submit" class="btn-primary full">Submit Request</button>
+        <button type="submit" class="btn-primary full">
+          Submit Request
+        </button>
       </form>
 
       <div class="contact-info">
