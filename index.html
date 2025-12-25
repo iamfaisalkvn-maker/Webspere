@@ -10,7 +10,9 @@
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -22,7 +24,7 @@
     header {
       background: linear-gradient(135deg, #5b5bff, #7c7cff);
       color: #fff;
-      padding: 16px 22px;
+      padding: 16px 24px;
       font-size: 20px;
       font-weight: 700;
     }
@@ -34,7 +36,7 @@
     }
 
     .card {
-      background: #fff;
+      background: #ffffff;
       border-radius: 14px;
       padding: 26px;
       margin-bottom: 25px;
@@ -54,10 +56,10 @@
     }
 
     .price {
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
       color: #5b5bff;
-      margin: 10px 0;
+      margin: 12px 0;
     }
 
     button {
@@ -103,7 +105,7 @@
 
 <div class="container">
 
-  <!-- SERVICE -->
+  <!-- SERVICE DETAILS -->
   <div class="card">
     <h1>Professional SEO Audit</h1>
     <p><strong>Manual Review</strong></p>
@@ -127,8 +129,8 @@
     <p class="price">₹1,000 – Professional SEO Audit</p>
 
     <p>
-      India: Razorpay (UPI / Cards / Net Banking)<br>
-      International: AirTM (manual payment after request)
+      India: Razorpay (UPI / Cards / Net Banking)<br />
+      International: AirTM (manual invoice)
     </p>
 
     <button id="payBtn">Pay ₹1,000 Now</button>
@@ -151,20 +153,33 @@
 <footer>
   © 2025 Webspere. Manual SEO Audit Service.
 </footer>
+
+<!-- PAYMENT SCRIPT -->
 <script>
   document.getElementById("payBtn").onclick = function () {
+
     var options = {
-      key: "rzp_live_RvhHi7Pjg1SFkF",   // Key ID only
-      amount: 1000,                   // ₹10 = 1000 paise (TEST)
+      key: "rzp_live_RvhHi7Pjg1SFkF", // ✅ Your Razorpay LIVE Key ID
+      amount: 100000, // ₹1,000 in paise
       currency: "INR",
       name: "Webspere",
-      description: "Professional SEO Audit (Test)",
+      description: "Professional SEO Audit",
+
       handler: function (response) {
         alert(
-          "Payment successful!\n" +
-          "Payment ID: " + response.razorpay_payment_id
+          "✅ PAYMENT RECEIVED\n\n" +
+          "Invoice Summary\n" +
+          "-------------------------\n" +
+          "Service: Professional SEO Audit\n" +
+          "Amount Paid: ₹1,000\n" +
+          "Payment ID: " + response.razorpay_payment_id + "\n\n" +
+          "Next Steps:\n" +
+          "• Please email or WhatsApp us your website URL\n" +
+          "• Audit report will be delivered within 24–48 hours\n\n" +
+          "Thank you for choosing Webspere."
         );
       },
+
       theme: {
         color: "#5b5bff"
       }
